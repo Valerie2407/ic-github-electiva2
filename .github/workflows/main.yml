@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Actualiza a la última versión compatible con Node.js 20.
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Actualiza a la versión de Node.js 18.
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Deploy to Surge
-      run: |
-        npm install --global surge
-        echo ${{ secrets.SURGE_API_KEY }} | surge login
-        surge --project ./ --domain ${{ secrets.SURGE_SUBDOMAIN }}.surge.sh
+      - name: Deploy to Surge
+        run: |
+          npm install --global surge
+          echo ${{ secrets.SURGE_API_KEY }} | surge login
+          surge --project ./ --domain ${{ secrets.SURGE_SUBDOMAIN }}.surge.sh
