@@ -19,10 +19,9 @@ jobs:
           node-version: '18'  # Actualiza a la versión de Node.js 18.
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --global surge
 
       - name: Deploy to Surge
         run: |
-          npm install --global surge
-          echo ${{ secrets.SURGE_API_KEY }} | surge login
-          surge --project ./ --domain ${{ secrets.SURGE_SUBDOMAIN }}.surge.sh
+        
+          surge --project ./ --domain ${{ secrets.SURGE_SUBDOMAIN }} --token ${{ secrets.SURGE_API_KEY }}
